@@ -35,7 +35,7 @@ cat ${filename} > ${names}
 #echo "cat ${names}"
 #cat ${names}
 for (( i=1; i<=${filenum}; i++ ))
-	do		
+	do
 	echo `sed -n ${i}p ${links}`
 	sed -n ${i}p ${links} > ${linkfile}
 	wget `cat ${linkfile} | tr -d '\r'`
