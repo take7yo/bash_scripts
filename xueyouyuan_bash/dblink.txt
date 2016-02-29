@@ -1,0 +1,5 @@
+查看数据库ip
+  docker exec -it jsylEvaluation bash
+  cat /etc/hosts
+连接数据库
+mysql -uroot -h 172.17.0.111 -pibignose12315 -Devaluation
