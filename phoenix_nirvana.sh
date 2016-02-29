@@ -1,12 +1,20 @@
 #!/bin/bash
+# Running status check process
+#
+# Crontab to run this script
+# */1 * * * * /path/to/the/script/phoenix_nirvana.sh threadName app_path
+
+# log setting
+LOG_PATH="/home/deathlog/$1"
+LOG_NAME="crontab_`date '+%Y%m%d'`.log"
+
 #判断日志目录是否存在，不存在创建目录
-if [ ! -d "/home/deathlog/$1" ]; then
-    mkdir -p "/home/deathlog/$1"
+if [ ! -d $LOG_PATH ]; then
+    mkdir -p $LOG_PATH
 fi
-echo "thread name is $1"
 #打印出当前的threadName进程：grep threadName查询的threadName进程，grep -v grep 去掉grep进程
 thread=`ps aux | grep '\/'$1'$' | grep -v grep | grep -v /bin/bash`
-echo [`date '+%F %T'`] $thread >> /home/deathlog/$1/crontab_`date '+%Y%m%d'`.log
+echo [`date '+%F %T'`] $thread >> ${LOG_PATH}/${LOG_NAME}
 
 #查询threadName进程个数：wc -l 返回行数
 count=`ps aux | grep '\/'$1'$' | grep -v /bin/bash | grep -v grep | wc -l`
